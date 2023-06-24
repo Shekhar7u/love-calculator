@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Calculator</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .txtB {
+            padding: 10px;
+        }
+
+        h1 {
+            color: deeppink;
+        }
+
+        .btn {
+            width: 190px;
+            padding: 10px;
+        }
+
+        input {
+        
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./OIP.jpeg" alt="">
+    <h1 id="result">Calculate Your Love</h1>
+    <input type="text" class="txtB" name="" id="txt1" placeholder="Enter your name">
+    <input type="text" class="txtB" name="" id="txt2" placeholder="Enter love name">
+    <button class="btn" onclick="love()">Calculate Love</button>
+    <script>
+        function love() {
+            let txt1 = document.getElementById("txt1").value;
+            let txt2 = document.getElementById("txt2").value;
+            if (txt1 == txt2) {
+                alert("Please enter valid name");
+            }
+            else if (txt1 && txt2) {
+                let total = Math.floor(Math.random() * 100);
+                // to get same output for same name
+                // first we remove space between name and concatinate and use as a key in local storage
+                str = (txt1 + txt2).replace(/\s/g, "");
+                str = str.toLowerCase();
+                // check value present in local storage or not
+                if (localStorage.getItem(str)) {
+                    // agar value hai to total mai daal do
+                    total = localStorage.getItem(str);
+                }
+                else {
+                    localStorage.setItem(str, total)
+                }
+                document.getElementById("result").innerText = total;
+                console.log(str)
+
+            }
+            else {
+                alert("Please enter valid name");
+            }
+        }
+    </script>
+</body>
+
+</html>
